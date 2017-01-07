@@ -1,9 +1,12 @@
 package thinkslate.thinkslateapplication;
 
-
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import models.DealItem;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements OnItemClickListener {
     private FirebaseDatabase database;
     private DatabaseReference dealsRef;
     private String dealsRefStr = "deals";
@@ -44,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         DealsAdapter dealsAdapter = new DealsAdapter(this, dealItems);
         Log.d("HomeActivity", dealsListView.toString());
         dealsListView.setAdapter(dealsAdapter);
+
+        dealsListView.setOnItemClickListener(this);
     }
 
     private void initFirebase() {
@@ -70,5 +75,16 @@ public class HomeActivity extends AppCompatActivity {
                 Log.d("HomeActivity", "Failed to read value.", databaseError.toException());
             }
         });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("HomeActivity", "Item clicked.");
+      //  Log.d("HomeActivity", "Deal ite")
+        String dealKey = dealItems.get(position).key;
+        Log.d("HomeActivity", "dealKey is: " + dealKey);
+        Intent intent = new Intent(HomeActivity.this, DealActivity.class);
+        intent.putExtra("dealKey", dealKey);
+        startActivity(intent);
     }
 }
