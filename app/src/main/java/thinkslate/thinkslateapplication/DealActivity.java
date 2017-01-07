@@ -1,5 +1,6 @@
 package thinkslate.thinkslateapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +12,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 import models.DealItem;
 
@@ -34,7 +33,7 @@ public class DealActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deal);
-        
+
         dealKey = getIntent().getStringExtra("dealKey");
         dealRefStr = "deals";
         initView();
@@ -73,5 +72,10 @@ public class DealActivity extends AppCompatActivity {
         name.setText(dealItem.name);
         description.setText(dealItem.description);
         longDescription.setText(dealItem.longDescription);
+    }
+
+    public void accept() {
+        Intent intent = new Intent(DealActivity.this, MapActivity.class);
+        startActivity(intent);
     }
 }
