@@ -4,8 +4,9 @@ package thinkslate.thinkslateapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.firebase.database.DatabaseError;
@@ -14,6 +15,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import models.DealItem;
+
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -21,30 +24,45 @@ public class HomeActivity extends AppCompatActivity {
     private String dealsRefStr = "deals";
     private List<DealItem> dealItems;
 
+    // View
+    private ListView dealsListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Log.d("HomeActivity", "PRINT SOETHING");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        dealItems = new ArrayList<DealItem>();
+
+        initFirebase();
+        initDealsRefListener();
+        initView();
+    }
+
+    private void initView() {
+        dealsListView = (ListView)findViewById(R.id.deals_list_view);
+        DealsAdapter dealsAdapter = new DealsAdapter(this, dealItems);
+        Log.d("HomeActivity", dealsListView.toString());
+        dealsListView.setAdapter(dealsAdapter);
+    }
+
+    private void initFirebase() {
         database = FirebaseDatabase.getInstance();
         dealsRef = database.getReference(dealsRefStr);
-
-        dealsRef.setValue("Hello world!");
-
-        initDealsRefListener();
     }
 
     private void initDealsRefListener() {
         dealsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String otherVal = dataSnapshot.getValue(String.class);
-                Log.d("HomeActivity", "Value is: " + otherVal);
-                String value = dataSnapshot.child(dealsRefStr).getValue(String.class);
-                Log.d("HomeActivity", "Value is: " + value);
+                dealItems = new ArrayList<DealItem>();
+                Log.d("HomeActivity", "Count is: " + dataSnapshot.getChildrenCount());
+                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    DealItem dealItem = postSnapshot.getValue(DealItem.class);
+                    Log.d("HomeActivity", dealItem.name + " " + dealItem.description);
+                    dealItems.add(dealItem);
+                }
+                initView();
             }
 
             @Override

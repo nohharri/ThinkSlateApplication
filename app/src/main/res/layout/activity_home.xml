@@ -10,14 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="thinkslate.thinkslateapplication.HomeActivity">
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/homeView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:id="@+id/deals_list_view" />
 </RelativeLayout>

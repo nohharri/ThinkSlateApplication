@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.List;
 
+import models.DealItem;
+
 
 /**
  * Created by harrisonnoh on 1/5/17.
@@ -41,12 +43,12 @@ public class DealsAdapter extends BaseAdapter {
 
     /* private view holder class */
     private class ViewHolder {
-        private TextView dealName;
-        private TextView dealDescr;
+        TextView name;
+        TextView description;
 
-        ViewHolder(TextView _dealName, TextView _dealDescr) {
-            dealName = _dealName;
-            dealDescr = _dealDescr;
+        ViewHolder(TextView _name, TextView _description) {
+            name = _name;
+            description = _description;
         }
     }
 
@@ -65,8 +67,8 @@ public class DealsAdapter extends BaseAdapter {
 
             DealItem rowPos = dealItems.get(position);
 
-            holder.dealName.setText(rowPos.getDealName());
-            holder.dealDescr.setText(rowPos.getDealName());
+            holder.name.setText(rowPos.name);
+            holder.description.setText(rowPos.description);
 
             convertView.setTag(holder);
         }
