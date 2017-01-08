@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,7 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import models.DealItem;
+
 
 public class DealActivity extends AppCompatActivity {
     private String dealKey;
@@ -74,7 +77,7 @@ public class DealActivity extends AppCompatActivity {
         longDescription.setText(dealItem.longDescription);
     }
 
-    public void accept() {
+    public void accept(View view) {
         Intent intent = new Intent(DealActivity.this, MapActivity.class);
         startActivity(intent);
     }

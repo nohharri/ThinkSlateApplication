@@ -32,7 +32,6 @@
         android:textStyle="normal|bold" />
 
     <TextView
-        android:text="Do this activity now and something good will happen for you"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/description"
@@ -49,5 +48,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:id="@+id/acceptBtn"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="accept" />
 </RelativeLayout>
