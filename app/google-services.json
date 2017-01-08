@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "776022368091",
+    "firebase_url": "https://thinkslateapplication.firebaseio.com",
+    "project_id": "thinkslateapplication",
+    "storage_bucket": "thinkslateapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776022368091:android:5897ac1a93c91ca9",
+        "android_client_info": {
+          "package_name": "thinkslate.thinkslateapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776022368091-q47p6bh5nes2ororv3u2p5vebvegg5pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thinkslate.thinkslateapplication",
+            "certificate_hash": "DCDC31D900DC1EBC51B38BBD1FC186CE7FB81FC9"
+          }
+        },
+        {
+          "client_id": "776022368091-5rgdd96s9cb2tsdkbj64f4b8dhribfah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ3tEQKaPc-KI4IoioNIPwIamUOuG9h6M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776022368091-5rgdd96s9cb2tsdkbj64f4b8dhribfah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
