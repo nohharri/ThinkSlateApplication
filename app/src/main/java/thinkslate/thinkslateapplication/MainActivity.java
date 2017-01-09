@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
                                 .replace(R.id.frame, userActivity).commit();
                         break;
                     case R.id.menuSettings:
+                        SettingsActivity settingsActivity = new SettingsActivity();
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.frame, settingsActivity).commit();
                         break;
                     default:
                         break;
