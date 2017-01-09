@@ -5,10 +5,14 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,14 +30,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks {
+public class MapActivity extends Fragment implements OnMapReadyCallback /*, LocationListener, GoogleApiClient.ConnectionCallbacks */{
 
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     private Marker marker;
-
+    View view;
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+    }*/
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        view =  inflater.inflate(R.layout.activity_map, container, false);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        return view;
     }
 
     /**
@@ -58,16 +75,16 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        setUpMap();
-/*
+       // setUpMap();
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         //mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener());
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-*/
-    }
 
+    }
+/*
     public void setUpMap() {
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -142,6 +159,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
             mapFragment.getMapAsync(this);
         }
-    }
+    }*/
 
 }
