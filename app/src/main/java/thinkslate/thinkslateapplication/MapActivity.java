@@ -55,8 +55,9 @@ public class MapActivity extends Fragment implements OnMapReadyCallback /*, Loca
                              Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.activity_map, container, false);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
+                /*getFragmentManager()
+                .findFragmentById(R.id.map);*/
         mapFragment.getMapAsync(this);
 
         return view;
@@ -78,9 +79,9 @@ public class MapActivity extends Fragment implements OnMapReadyCallback /*, Loca
        // setUpMap();
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(42, -83);
         //mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener());
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Ann Arbor"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }

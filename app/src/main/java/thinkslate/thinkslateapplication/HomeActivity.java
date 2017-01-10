@@ -48,28 +48,12 @@ public class HomeActivity extends Fragment implements OnItemClickListener {
 
         initFirebase();
         initDealsRefListener();
-        initView();
+       // initView();
 
         return view;
     }
 
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        dealItems = new ArrayList<DealItem>();
-
-        initFirebase();
-        initDealsRefListener();
-        initView();
-    }
-*/
-
     private void initView() {
-       // dealsListView = (ListView)findViewById(R.id.deals_list_view);
-        //dealsListView = (ListView)getView().findViewById(R.id.deals_list_view);
         dealsListView = (ListView)view.findViewById(R.id.deals_list_view);
         DealsAdapter dealsAdapter = new DealsAdapter(getActivity(), dealItems);
         Log.d("HomeActivity", dealsListView.toString());
@@ -87,14 +71,16 @@ public class HomeActivity extends Fragment implements OnItemClickListener {
         dealsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dealItems = new ArrayList<DealItem>();
-                Log.d("HomeActivity", "Count is: " + dataSnapshot.getChildrenCount());
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    DealItem dealItem = postSnapshot.getValue(DealItem.class);
-                    Log.d("HomeActivity", dealItem.name + " " + dealItem.description);
-                    dealItems.add(dealItem);
+                if(dealItems.size() == 0) {
+                    dealItems = new ArrayList<DealItem>();
+                    Log.d("HomeActivity", "Count is: " + dataSnapshot.getChildrenCount());
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        DealItem dealItem = postSnapshot.getValue(DealItem.class);
+                        Log.d("HomeActivity", dealItem.name + " " + dealItem.description);
+                        dealItems.add(dealItem);
+                    }
+                    initView();
                 }
-                initView();
             }
 
             @Override

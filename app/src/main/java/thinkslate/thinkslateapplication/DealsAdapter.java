@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
@@ -45,10 +46,14 @@ public class DealsAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView name;
         TextView description;
+        ImageView image;
+        TextView points;
 
-        ViewHolder(TextView _name, TextView _description) {
+        ViewHolder(TextView _name, TextView _description, ImageView _image, TextView _points) {
             name = _name;
             description = _description;
+            image = _image;
+            points = _points;
         }
     }
 
@@ -63,12 +68,18 @@ public class DealsAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.deal_item, null);
             holder = new ViewHolder(
                     (TextView)convertView.findViewById(R.id.dealName),
-                    (TextView)convertView.findViewById(R.id.dealDescr));
+                    (TextView)convertView.findViewById(R.id.dealDescr),
+                    (ImageView)convertView.findViewById(R.id.dealImage),
+                    (TextView)convertView.findViewById(R.id.dealPoints)
+            );
 
             DealItem rowPos = dealItems.get(position);
 
             holder.name.setText(rowPos.name);
             holder.description.setText(rowPos.description);
+            String points = rowPos.points + " points";
+            holder.points.setText(points);
+            new DownloadImageTask(holder.image).execute(rowPos.imageUrl);
 
             convertView.setTag(holder);
         }
