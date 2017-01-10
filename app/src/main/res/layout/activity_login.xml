@@ -14,16 +14,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:hint="@string/password_prompt"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/email" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/email"
@@ -31,6 +21,16 @@
         android:layout_marginBottom="55dp"
         android:layout_alignBottom="@+id/password"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        android:hint="@string/password_prompt"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/email" />
 
     <Button
         android:text="@string/login_btn"

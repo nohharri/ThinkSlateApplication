@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Think Slate Application</string>
+    <string name="app_name">Pathlete</string>
     <!-- LoginActivity -->
     <string name="email_prompt">Email</string>
     <string name="password_prompt">Password</string>
