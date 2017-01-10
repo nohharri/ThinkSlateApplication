@@ -71,7 +71,7 @@ public class HomeActivity extends Fragment implements OnItemClickListener {
         dealsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dealItems.size() == 0) {
+              //  if(dealItems.size() == 0) {
                     dealItems = new ArrayList<DealItem>();
                     Log.d("HomeActivity", "Count is: " + dataSnapshot.getChildrenCount());
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -80,7 +80,7 @@ public class HomeActivity extends Fragment implements OnItemClickListener {
                         dealItems.add(dealItem);
                     }
                     initView();
-                }
+            //    }
             }
 
             @Override

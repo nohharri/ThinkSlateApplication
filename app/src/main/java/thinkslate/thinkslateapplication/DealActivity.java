@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,10 +31,12 @@ public class DealActivity extends AppCompatActivity {
     private String dealRefStr;
 
     // View
+    ImageView image;
     TextView name;
     TextView description;
     TextView longDescription;
     Button acceptBtn;
+    TextView points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +71,21 @@ public class DealActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        image = (ImageView)findViewById(R.id.image);
         name = (TextView)findViewById(R.id.name);
         description = (TextView)findViewById(R.id.description);
         longDescription = (TextView)findViewById(R.id.longDescription);
         acceptBtn = (Button) findViewById(R.id.acceptBtn);
+        points = (TextView)findViewById(R.id.points);
     }
 
     private void updateView() {
+        new DownloadImageTask(image).execute(dealItem.imageUrl);
         name.setText(dealItem.name);
         description.setText(dealItem.description);
         longDescription.setText(dealItem.longDescription);
+        String pointsStr = dealItem.points + " points!";
+        points.setText(pointsStr);
     }
 
     public void accept(View view) {
